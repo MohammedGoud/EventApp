@@ -1,0 +1,37 @@
+<h1>Events Management</h1>
+<div>
+
+  <table border='1' width='100%' style='border-collapse: collapse;'>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Location</th>
+      <th>Operations</th>
+
+    </tr>
+
+    <tr *ngFor="let event of events">
+      <td>{{ event.id }}</td>
+      <td>{{ event.name }}</td>
+      <td>{{ event.type }}</td>
+      <td>{{ event.time }}</td>
+      <td>{{ event.location }}</td>
+      <td>
+        <button (click)="deleteEvent(event.id)">Delete</button>
+        <button (click)="selectEvent(event)">Update</button>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+  <form #f = "ngForm">
+    <label>Number</label>
+    <input type="text" name="number" [(ngModel)] = "selectedEvent.number">
+    <br>
+    <label>Amount</label>
+    <input type="text" name="amount" [(ngModel)] = "selectedEvent.amount">
+    <br>
+    <input type="button" (click)="createOrUpdateEvent(f)" value="Create or Update Event">
+  </form>
